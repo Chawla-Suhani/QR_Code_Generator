@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>QR Code Generator</title>
+</head>
+<body>
+  <div class="container">
+    <h1>QR Code Generator</h1>
+    <input type="text" id="urlInput" placeholder="Enter URL here..." />
+    <button id="generateBtn">Generate QR Code</button>
+    <div id="qrCodeContainer"></div>
+    <a id="downloadBtn" style="display: none;" download="QR_CODE.png">Download QR Code</a>
+  </div>
+
+  <script>
+    const generateBtn = document.getElementById("generateBtn");
+    const urlInput = document.getElementById("urlInput");
+    const qrCodeContainer = document.getElementById("qrCodeContainer");
+    const downloadBtn = document.getElementById("downloadBtn");
+
+    generateBtn.addEventListener("click", async () => {
+      const url = urlInput.value.trim();
+
+      if (!url) {
+        alert("Please enter a valid URL");
+        return;
+      }
+
+      try {
+        qrCodeContainer.innerHTML = "";
+        downloadBtn.style.display = "none"; // Hide download button initially
+
+        // Generate QR code and show
+        const response = await fetch(`/generate?q=${encodeURIComponent(url)}`);
+        const qrCodeBlob = await response.blob();
+
+        const img = document.createElement("img");
+        img.src = URL.createObjectURL(qrCodeBlob);
+        qrCodeContainer.appendChild(img);
+
+        // Setup download link
+        downloadBtn.href = img.src;
+        downloadBtn.style.display = "inline-block"; // Show download button
+      } catch (error) {
+        console.error("Error generating QR code:", error);
+        alert("Failed to generate QR code");
+      }
+    });
+  </script>
+</body>
+</html>
