@@ -1,0 +1,29 @@
+{
+  "name": "qrcodegenerator",
+  "version": "1.0.0",
+  "description": "This is a project to generate QR code based on user input",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Suhani Chawla",
+  "license": "ISC",
+  "dependencies": {
+    "@inquirer/prompts": "^7.2.3",
+    "express": "^4.21.2",
+    "inquirer": "^12.4.1",
+    "nodemon": "^3.1.9",
+    "qr-image": "^3.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chawla-Suhani/QR_Code_Generator.git"
+
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Chawla-Suhani/QR_Code_Generator/issues"
+  },
+  "homepage": "https://github.com/Chawla-Suhani/QR_Code_Generator#readme"
+}
